@@ -5,7 +5,7 @@
 
 typedef struct {
 	uintptr_t ptrs; //array of stored malloc returns
-	uintmax_t len;
+	uintmax_t len; //length of ptrs array
 } mem;
 
 #endif

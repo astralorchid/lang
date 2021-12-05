@@ -12,6 +12,6 @@ typedef struct {
 }txtFile;
 
 uint32_t getFileSize(FILE* fptr);
-txtFile openFile(char* filename);
+txtFile* openFile(char* filename);
 
 #endif

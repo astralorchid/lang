@@ -12,7 +12,7 @@ uint32_t getFileSize(FILE* fptr) {
 	return fileSize;
 }
 
-txtFile openFile(char* filename) {
+txtFile* openFile(char* filename) {
 	uint32_t nameLen = (uint32_t)strlen(filename);
 	txtFile* newTxtFile = malloc(sizeof(txtFile));
 	newTxtFile->fileName = malloc(nameLen + 1);
@@ -24,7 +24,7 @@ txtFile openFile(char* filename) {
 	if (fp == NULL) {
 		printf("Error opening file\n");
 		newTxtFile->fileSize = 0;
-		return *newTxtFile;
+		return newTxtFile;
 	}
 
 	uint32_t fs = getFileSize(fp);
@@ -42,5 +42,5 @@ txtFile openFile(char* filename) {
 		}
 	}
 	fclose(fp);
-	return *newTxtFile;
+	return newTxtFile;
 }
