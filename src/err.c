@@ -4,7 +4,8 @@
 
 char* ERROR_STR[] = {
 	[NO_ERROR] = "No error",
-	[OUT_OF_MEMORY] = "Out of memory"
+	[OUT_OF_MEMORY] = "Out of memory",
+	[OPEN_FILE_ERR] = "Error opening file"
 };
 
 void err(int errcode) {

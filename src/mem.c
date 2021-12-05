@@ -5,12 +5,11 @@
 
 
 void addmem(mem* _mem, uintptr_t newptr) { //adds malloc return to array
-	uintptr_t* _memptrs; //ptr for resized array
 	uintmax_t* len = &_mem->len;
 	(*len)++;
-	_memptrs = realloc(_mem->ptrs, *len); //resize array
-	if (_memptrs != 0) {
-		_memptrs[*len - 1] = newptr; //append
+	uintptr_t* _memptrs = realloc(_mem->ptrs, *len); //resize array
+	if (_memptrs != NULL) {
+		_memptrs[*len] = newptr; //append
 	}
 	else {
 		err(OUT_OF_MEMORY);
