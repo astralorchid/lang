@@ -2,17 +2,13 @@
 #include "mem.h"
 
 int main(int argc, char* argv[]) {
-
 	//initialize mem array to store malloc returns
-	mem* _mem = malloc(sizeof(mem));
-	_mem->len = 0;
-
+	mem* _mem = initmem();
 	txtFile* _txtFile = openFile(argv[1]);
 	addmem(_mem, _txtFile);
 	printf("%s", _txtFile->buffer);
-	free(_txtFile);
-	free(_mem);
-	printf("%s", "Done");
 
+	printf("Malloc return array size: %d\n", (int)_mem->len);
+	//freemem(_mem);
 	return 0;
 }

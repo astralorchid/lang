@@ -8,4 +8,6 @@ typedef struct {
 	uintmax_t len; //length of ptrs array
 } mem;
 
+void addmem(mem* _mem, uintptr_t newptr);
+mem* initmem();
 #endif
