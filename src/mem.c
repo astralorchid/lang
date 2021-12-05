@@ -1,7 +1,8 @@
 #include "mem.h"
+#include "err.h"
 #include <stdlib.h>
 
-#define OUT_OF_MEMORY "Out of memory"
+
 
 void addmem(mem* _mem, uintptr_t newptr) { //adds malloc return to array
 	uintptr_t* _memptrs; //ptr for resized array
@@ -12,33 +13,25 @@ void addmem(mem* _mem, uintptr_t newptr) { //adds malloc return to array
 		_memptrs[*len - 1] = newptr; //append
 	}
 	else {
-		printf(OUT_OF_MEMORY);
+		err(OUT_OF_MEMORY);
 	}
 }
 
 mem* initmem() {
-	size_t mem_s = sizeof(mem);
-	size_t memptrs_s = sizeof(uintptr_t);
-	mem* _mem = malloc(mem_s);
-	mem* ret = 0;
+	mem* _mem = malloc(sizeof(mem));
 
 	if (_mem != 0) {
-		uintptr_t* _memptrs = malloc(memptrs_s);
+		uintptr_t* _memptrs = malloc(sizeof(uintptr_t));
 		if (_memptrs != 0) {
 			_mem->ptrs = _memptrs;
 			_mem->len = 0;
-
-			addmem(_mem, _mem, mem_s);
-			addmem(_mem, _memptrs, memptrs_s);
-			ret = _mem;
+			addmem(_mem, _mem);
+			addmem(_mem, _memptrs);
 		}
 		else {
-			printf(OUT_OF_MEMORY);
+			err(OUT_OF_MEMORY);
 		}
 	}
-	else {
-		printf(OUT_OF_MEMORY);
-	}
-	return ret;
+	return _mem;
 }
 
