@@ -2,7 +2,6 @@
 #define LEXER_H
 
 #include <stdint.h>
-
 //custom bool type
 typedef unsigned char bool;
 #define false 0
@@ -12,7 +11,14 @@ typedef unsigned char bool;
 
 typedef struct {
 	char* str;
+	char* buf;
 	uintmax_t len;
+	uintmax_t line;
+	uintmax_t bufpos;
+	uintmax_t index;
+	uintptr_t parent;
+} tok;
 
-} token;
+tok* tokenize(char* buf, uintmax_t buflen);
+
 #endif
